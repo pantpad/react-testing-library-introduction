@@ -1,14 +1,23 @@
-import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+import { useRef } from "react";
+
 function App() {
-  const [count, setCount] = useState(0);
+  const count = 0;
+
+  const input = useRef<HTMLInputElement>(null);
+
+  function logInputValue() {
+    if (input) {
+      console.log(input.current?.value);
+    }
+  }
 
   return (
     <>
-      <div className="bg-red-500">
+      <div className="flex items-center justify-center">
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -17,16 +26,22 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <button onClick={logInputValue}>count is {count}</button>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button>increase{count}</button>
+        <button>decrease {count}</button>
+        <button>increase by amount {count}</button>
+        <button>decrease by amount {count}</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+      <p>
+        <input
+          ref={input}
+          type="number"
+          name="amount"
+          id="amount"
+          placeholder="insert the amount value . . ."
+          className="bg-slate-100 rounded py-2 px-4"
+        />
       </p>
     </>
   );
