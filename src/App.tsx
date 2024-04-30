@@ -34,35 +34,36 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <button>count is {count}</button>
-      <div className="card">
+      <div className="card flex flex-col gap-4">
+        <button className="bg-slate-200 font-semibold">count is {count}</button>
         <button
           onClick={() => {
             dispatch(increment());
           }}
         >
-          increase +1
+          increase <span className="text-green-500">+1</span>
         </button>
         <button
           onClick={() => {
             dispatch(decrement());
           }}
         >
-          decrease -1
+          decrease <span className="text-red-500">-1</span>
         </button>
         <button
           onClick={() => {
             dispatch(incrementByAmount(+inputValue));
           }}
         >
-          increase by amount +{inputValue}
+          increase by amount{" "}
+          <span className="text-green-500">+{inputValue}</span>
         </button>
         <button
           onClick={() => {
             dispatch(decrementByAmount(+inputValue));
           }}
         >
-          decrease by amount -{inputValue}
+          decrease by amount <span className="text-red-500">-{inputValue}</span>
         </button>
       </div>
       <p>
