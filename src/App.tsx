@@ -2,7 +2,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-import { useRef } from "react";
+import { useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "./store/reduxHooks";
 
@@ -17,11 +17,10 @@ function App() {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
 
-  const input = useRef<HTMLInputElement>(null);
-  const inputValue = input.current?.value ? input.current.value : 0;
+  const [inputValue, setInputValue] = useState(0);
 
-  function logInputValue() {
-    console.log(inputValue);
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(+e.target.value);
   }
 
   return (
@@ -35,45 +34,46 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <button onClick={logInputValue}>count is {count}</button>
+      <button>count is {count}</button>
       <div className="card">
         <button
           onClick={() => {
             dispatch(increment());
           }}
         >
-          increase{count}
+          increase +1
         </button>
         <button
           onClick={() => {
             dispatch(decrement());
           }}
         >
-          decrease {count}
+          decrease -1
         </button>
         <button
           onClick={() => {
             dispatch(incrementByAmount(+inputValue));
           }}
         >
-          increase by amount {count}
+          increase by amount +{inputValue}
         </button>
         <button
           onClick={() => {
             dispatch(decrementByAmount(+inputValue));
           }}
         >
-          decrease by amount {count}
+          decrease by amount -{inputValue}
         </button>
       </div>
       <p>
         <input
-          ref={input}
           type="number"
           name="amount"
           id="amount"
+          value={inputValue}
           placeholder="insert the amount value . . ."
           className="bg-slate-100 rounded py-2 px-4"
+          onChange={onChange}
         />
       </p>
     </>
