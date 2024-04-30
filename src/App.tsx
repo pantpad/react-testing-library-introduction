@@ -4,15 +4,23 @@ import "./App.css";
 
 import { useRef } from "react";
 
+import { useAppSelector, useAppDispatch } from "./store/reduxHooks";
+
+import {
+  increment,
+  incrementByAmount,
+  decrement,
+  decrementByAmount,
+} from "./store/reducers/counterSlice";
+
 function App() {
-  const count = 0;
+  const count = useAppSelector((state) => state.counter.value);
+  const dispatch = useAppDispatch();
 
   const input = useRef<HTMLInputElement>(null);
 
   function logInputValue() {
-    if (input) {
-      console.log(input.current?.value);
-    }
+    console.log(input.current?.value ? input.current.value : 0);
   }
 
   return (
@@ -28,10 +36,34 @@ function App() {
       <h1>Vite + React</h1>
       <button onClick={logInputValue}>count is {count}</button>
       <div className="card">
-        <button>increase{count}</button>
-        <button>decrease {count}</button>
-        <button>increase by amount {count}</button>
-        <button>decrease by amount {count}</button>
+        <button
+          onClick={() => {
+            dispatch(increment());
+          }}
+        >
+          increase{count}
+        </button>
+        <button
+          onClick={() => {
+            dispatch(decrement());
+          }}
+        >
+          decrease {count}
+        </button>
+        <button
+          onClick={() => {
+            dispatch(incrementByAmount());
+          }}
+        >
+          increase by amount {count}
+        </button>
+        <button
+          onClick={() => {
+            dispatch(decrementByAmount());
+          }}
+        >
+          decrease by amount {count}
+        </button>
       </div>
       <p>
         <input
