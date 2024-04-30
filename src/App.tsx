@@ -18,9 +18,10 @@ function App() {
   const dispatch = useAppDispatch();
 
   const input = useRef<HTMLInputElement>(null);
+  const inputValue = input.current?.value ? input.current.value : 0;
 
   function logInputValue() {
-    console.log(input.current?.value ? input.current.value : 0);
+    console.log(inputValue);
   }
 
   return (
@@ -52,14 +53,14 @@ function App() {
         </button>
         <button
           onClick={() => {
-            dispatch(incrementByAmount());
+            dispatch(incrementByAmount(+inputValue));
           }}
         >
           increase by amount {count}
         </button>
         <button
           onClick={() => {
-            dispatch(decrementByAmount());
+            dispatch(decrementByAmount(+inputValue));
           }}
         >
           decrease by amount {count}

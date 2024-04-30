@@ -17,10 +17,18 @@ export const counterSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    increment: () => {},
-    decrement: () => {},
-    incrementByAmount: () => {},
-    decrementByAmount: () => {},
+    increment: (state) => {
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload;
+    },
+    decrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value -= action.payload;
+    },
   },
 });
 
