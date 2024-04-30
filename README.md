@@ -2,5 +2,5 @@
 
 //Todo
 
-- [ ] Install & configure Tailwind w/Prettier plugin
+- [x] Install & configure Tailwind w/Prettier plugin
 - [ ] Install & configure redux-toolkit
