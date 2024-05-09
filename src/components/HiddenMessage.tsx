@@ -9,7 +9,7 @@ export default function HiddenMessage({ children }: PropsWithChildren) {
 
   return (
     <section className="flex flex-col gap-2">
-      <button onClick={toggleMessage}>
+      <button onClick={toggleMessage} aria-label="hidden">
         {showMessage ? "Hide" : "Show"} Message
       </button>
       {showMessage ? <h2 className="text-4xl">{children}</h2> : "X"}
